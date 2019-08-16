@@ -1,0 +1,94 @@
+{
+    "version": "1.0",
+    "summary": {
+        "tool": "QTA",
+        "title": "Debug test report",
+        "environment": {
+            "hostname": "liubo",
+            "os": "\nMicrosoft Windows [版本 10.0.17763.615]\n",
+            "qtaf_version": "5.4.28",
+            "python_version": "3.7.0[win32]"
+        },
+        "start_time": "2019-08-08 11:24:51",
+        "testcase_total_run": 4,
+        "testcase_total_count": 4,
+        "testcase_passed": 4,
+        "succeed": true,
+        "end_time": "2019-08-08 11:26:40"
+    },
+    "logs": [
+        {
+            "level": 20,
+            "tag": "Loader",
+            "message": "filter 0 testcases totally",
+            "record": {}
+        },
+        {
+            "level": 20,
+            "tag": "Loader",
+            "message": "load 4 testcases totally",
+            "record": {}
+        }
+    ],
+    "filtered_tests": [],
+    "load_errors": [],
+    "passed_tests": {
+        "footlbotest.leaveMsgUI.leaveMsgUI003.leaveMsgUI003": {
+            "description": "底部标题留言窗口",
+            "owner": "liubo",
+            "priority": "High",
+            "status": "Design",
+            "timeout": 5,
+            "failed_info": "",
+            "start_time": "2019-08-08 11:24:51",
+            "end_time": "2019-08-08 11:25:11",
+            "records": [
+                "footlbotest.leaveMsgUI.leaveMsgUI003.leaveMsgUI003_20190808_112511070.js"
+            ]
+        },
+        "footlbotest.leaveMsgUI.leaveMsgUI001.leaveMsgUI001": {
+            "description": "非合作商页面右侧留言窗口",
+            "owner": "liubo",
+            "priority": "High",
+            "status": "Design",
+            "timeout": 5,
+            "failed_info": "",
+            "start_time": "2019-08-08 11:25:11",
+            "end_time": "2019-08-08 11:25:28",
+            "records": [
+                "footlbotest.leaveMsgUI.leaveMsgUI001.leaveMsgUI001_20190808_112528663.js"
+            ]
+        },
+        "footlbotest.leaveMsgUI.leaveMsgUI004.leaveMsgUI004": {
+            "description": "底部留言咨询中免费电话",
+            "owner": "liubo",
+            "priority": "High",
+            "status": "Design",
+            "timeout": 5,
+            "failed_info": "",
+            "start_time": "2019-08-08 11:25:28",
+            "end_time": "2019-08-08 11:26:15",
+            "records": [
+                "footlbotest.leaveMsgUI.leaveMsgUI004.leaveMsgUI004_20190808_112615635.js"
+            ]
+        },
+        "footlbotest.leaveMsgUI.leaveMsgUI002.leaveMsgUI002": {
+            "description": "底部留言咨询中提交留言",
+            "owner": "liubo",
+            "priority": "High",
+            "status": "Design",
+            "timeout": 5,
+            "failed_info": "",
+            "start_time": "2019-08-08 11:26:15",
+            "end_time": "2019-08-08 11:26:40",
+            "records": [
+                "footlbotest.leaveMsgUI.leaveMsgUI002.leaveMsgUI002_20190808_112640078.js"
+            ]
+        }
+    },
+    "failed_tests": {},
+    "displays": [
+        "failed",
+        "error"
+    ]
+}

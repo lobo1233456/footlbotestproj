@@ -2,6 +2,8 @@
 # -*- coding: UTF-8 -*-
 import json
 import time
+
+from retrying import retry
 from selenium import webdriver
 from footlbolib.testcase import FootlboTestCase
 class leaveMsgUI001(FootlboTestCase):
@@ -29,6 +31,8 @@ class leaveMsgUI001(FootlboTestCase):
             return alert_text
         finally:
             self.accept_next_alert = True
+
+    @retry(stop_max_attempt_number=3, stop_max_delay=10000)
     def run_test(self):
         driver = self.driver
         driver.get("https://www.kmway.com/")

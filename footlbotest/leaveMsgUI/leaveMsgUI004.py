@@ -1,6 +1,9 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
 import time
+
+from retrying import retry
+
 from footlbolib.testcase import FootlboTestCase
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -20,6 +23,7 @@ class leaveMsgUI004(FootlboTestCase):
         self.driver = webdriver.Firefox()
         self.accept_next_alert = True
 
+    @retry(stop_max_attempt_number=3, stop_max_delay=10000)
     def run_test(self):
         driver = self.driver
         driver.get("https://www.kmway.com/")

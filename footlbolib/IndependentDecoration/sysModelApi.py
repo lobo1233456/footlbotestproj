@@ -134,6 +134,7 @@ class roleModelInfo():
         :return:最新modelId
         '''
         resMql = mysqlCon().comMysql("SELECT model_id FROM sys_model order by model_id DESC LIMIT 1")
+        print(resMql)
         rootModelID = resMql[0][0]
         return  rootModelID
 
@@ -146,44 +147,45 @@ if __name__ == '__main__':
     dirButtonNameUpdate = baseGo.nameRandom()
     baseGo.creatModel(rootName, 1, 0) #执行创建根目录菜单
     rootModelID =baseGo.getModelId()
-    print("创建一级菜单栏名称:%s,modelID:%s" % (rootName, rootModelID))
-    findNewRes = baseGo.AccurateSearch(rootModelID)
-    assert findNewRes["data"]["modelTitle"] == rootName
-
-    baseGo.creatModel(dirName, 1, rootModelID)  # 在根目录下创建二级目录菜单
-    dirModelID = baseGo.getModelId()
-    print("创建二级菜单栏名称:%s,modelID:%s" % (dirName, dirModelID))
-    findNewRes = baseGo.AccurateSearch(dirModelID)
-    assert findNewRes["data"]["modelTitle"] == dirName
-
-    baseGo.creatModel(buttonName, 2, rootModelID)  # 执行创建二级目录按钮
-    buttonModelID = baseGo.getModelId()
-    print("创建二级按钮名称:%s,modelID:%s" % (buttonName, buttonModelID))
-    findNewRes = baseGo.AccurateSearch(buttonModelID)
-    assert findNewRes["data"]["modelTitle"] == buttonName
-
-    baseGo.creatModel(dirButtonName, 2, dirModelID)  # 执行创建二级目录菜单下创建按钮
-    dirModelID_twice = baseGo.getModelId()
-    print("创建二级菜单栏按钮名称:%s,modelID:%s" % (dirButtonName, dirModelID_twice))
-    findNewRes = baseGo.AccurateSearch(dirModelID_twice)
-    assert findNewRes["data"]["modelTitle"] == dirButtonName
-
-
-
-    print("执行修改程序,修改指定id的Name")
-    baseGo.update(dirModelID_twice,dirModelID,dirButtonNameUpdate)
-    findNewRes = baseGo.AccurateSearch(dirModelID_twice)
-    assert findNewRes["data"]["modelTitle"] == dirButtonNameUpdate #验证是否修改
-    print("删除指定id的记录")
-    baseGo.delete(dirModelID_twice)
-    resMql = mysqlCon().comMysql("SELECT model_id FROM sys_model where model_id = %s"%dirModelID_twice)
-    assert(len(resMql)==0)
-    print("清理根目录数据")
-    baseGo.delete(rootModelID)
-
-
-
-
-
-
+    print(rootModelID)
+    # print("创建一级菜单栏名称:%s,modelID:%s" % (rootName, rootModelID))
+    # findNewRes = baseGo.AccurateSearch(rootModelID)
+    # assert findNewRes["data"]["modelTitle"] == rootName
+    #
+    # baseGo.creatModel(dirName, 1, rootModelID)  # 在根目录下创建二级目录菜单
+    # dirModelID = baseGo.getModelId()
+    # print("创建二级菜单栏名称:%s,modelID:%s" % (dirName, dirModelID))
+    # findNewRes = baseGo.AccurateSearch(dirModelID)
+    # assert findNewRes["data"]["modelTitle"] == dirName
+    #
+    # baseGo.creatModel(buttonName, 2, rootModelID)  # 执行创建二级目录按钮
+    # buttonModelID = baseGo.getModelId()
+    # print("创建二级按钮名称:%s,modelID:%s" % (buttonName, buttonModelID))
+    # findNewRes = baseGo.AccurateSearch(buttonModelID)
+    # assert findNewRes["data"]["modelTitle"] == buttonName
+    #
+    # baseGo.creatModel(dirButtonName, 2, dirModelID)  # 执行创建二级目录菜单下创建按钮
+    # dirModelID_twice = baseGo.getModelId()
+    # print("创建二级菜单栏按钮名称:%s,modelID:%s" % (dirButtonName, dirModelID_twice))
+    # findNewRes = baseGo.AccurateSearch(dirModelID_twice)
+    # assert findNewRes["data"]["modelTitle"] == dirButtonName
+    #
+    #
+    #
+    # print("执行修改程序,修改指定id的Name")
+    # baseGo.update(dirModelID_twice,dirModelID,dirButtonNameUpdate)
+    # findNewRes = baseGo.AccurateSearch(dirModelID_twice)
+    # assert findNewRes["data"]["modelTitle"] == dirButtonNameUpdate #验证是否修改
+    # print("删除指定id的记录")
+    # baseGo.delete(dirModelID_twice)
+    # resMql = mysqlCon().comMysql("SELECT model_id FROM sys_model where model_id = %s"%dirModelID_twice)
+    # assert(len(resMql)==0)
+    # print("清理根目录数据")
+    # baseGo.delete(rootModelID)
+    #
+    #
+    #
+    #
+    #
+    #
 

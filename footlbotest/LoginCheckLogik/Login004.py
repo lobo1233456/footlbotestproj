@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import json
 
-import pysnooper
+
 import requests
 from footlbolib.IndependentDecoration.urlBase import urlInfo
 from footlbolib.testcase import FootlboTestCase
@@ -20,7 +20,7 @@ class Login004(FootlboTestCase):
     def pre_test(self):
         self.url =  urlInfo(accountName='admin', password='123456')
 
-    @pysnooper.snoop()
+
     def run_test(self):
         # ---------------------------
         self.start_step("测试登录接口")

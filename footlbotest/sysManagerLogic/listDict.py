@@ -41,7 +41,7 @@ class dictManager(FootlboTestCase):
         self.log_info("成功执行修改程序,修改指定id的Name")
 
         baseGo.delete(dictId)
-        resMql = mysqlCon().comMysql("SELECT * FROM dict_app WHERE app_id = %s" % dictId)
+        resMql = mysqlCon().comMysql("SELECT * FROM custom_dict WHERE dict_id = %s" % dictId)
         self.assert_("指定id是否已经被清理", (resMql == None))
 
     def post_test(self):

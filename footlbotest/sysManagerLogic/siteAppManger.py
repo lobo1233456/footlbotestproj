@@ -22,7 +22,6 @@ class SiteManager(FootlboTestCase):
 
     @pysnooper.snoop()
     def run_test(self):
-
         baseGo = SiteInfo()
         siteNew = baseGo.nameRandom()
         siteNameUpdate = baseGo.nameRandom()
@@ -31,7 +30,7 @@ class SiteManager(FootlboTestCase):
         siteId = res["data"]["list"][0]["appId"]
         findNewRes = baseGo.AccurateSearch(siteId)
         self.assert_("创建site是否成功", findNewRes["data"]["appTitle"] == siteNew)
-        self.log_info("成功创建site名称:%s,modelID:%s" % (siteNew, siteId))
+        self.log_info("成功创建site名称:%s,siteId:%s" % (siteNew, siteId))
 
         baseGo.update(siteId,siteNameUpdate)
         findNewRes = baseGo.AccurateSearch(siteId)
@@ -44,7 +43,8 @@ class SiteManager(FootlboTestCase):
         self.assert_("删除功能权限是否开放", res[0] == '该操作危险，系统暂不开放')
         mysqlCon().comMysql("DELETE FROM site_app WHERE app_id = %s" % siteId)
         resMql = mysqlCon().comMysql("SELECT * FROM site_app WHERE app_id = %s" % siteId)
-        self.assert_("指定id是否已经被清理", (resMql == None))
+        self.log_info(resMql)
+        self.assert_("指定id是否已经被清理", (len(resMql) == 0))
 
     def post_test(self):
         pass

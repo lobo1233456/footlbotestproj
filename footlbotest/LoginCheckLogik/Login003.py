@@ -22,7 +22,7 @@ testdata = [
         "2147483648",
         "-2147483648"
 ]
-
+@datadrive.DataDrive(testdata)
 class Login003(FootlboTestCase):
     '''
     login用户名错误输入，数据驱动模式
@@ -39,8 +39,6 @@ class Login003(FootlboTestCase):
         self.assert_("已确定无%s的账号信息:",mysqlCon().existName(nameList,self.casedata))
         self.log_info("已确定无%s的账号信息"%self.casedata)
         self.url =  urlInfo()
-
-    @pysnooper.snoop()
 
     def run_test(self):
         # ---------------------------

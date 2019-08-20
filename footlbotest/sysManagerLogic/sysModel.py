@@ -1,6 +1,6 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
-
+import pysnooper
 
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
 from footlbolib.IndependentDecoration.sysModelApi import roleModelInfo
@@ -18,6 +18,7 @@ class roleManager001(FootlboTestCase):
         
         self.baseGo = roleModelInfo()
 
+    @pysnooper.snoop()
     def run_test(self):
         baseGo = roleModelInfo()
         dirName = baseGo.nameRandom()
@@ -68,63 +69,6 @@ class roleManager001(FootlboTestCase):
         self.log_info("清理根目录数据")
         baseGo.delete(rootModelID)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # baseGo = roleModelInfo()
-        # # ------------获得随机名字---------------
-        # newName = baseGo.nameRandom()
-        # self.log_info(baseGo.creatModel(newName))
-        # self.log_info("菜单栏名称:%s已经被创建" % newName)
-        # self.log_info("检查%s是否被创建" % newName)
-        # findNewRes = baseGo.FindModel(newName)
-        # modelTitle = findNewRes['data']['list'][-1]['modelTitle']
-        # self.assert_("检查changeName是否被创建", newName == modelTitle)
-        # self.log_info("%s的modelTitle:%s" % (newName, modelTitle))
-        # modelId = int(findNewRes['data']['list'][-1]['modelId'])
-        # self.log_info("%s的modelId:%s" % (newName, modelId))
-        # # 创建一个新的名字,默认名字和title一致
-        # enpName = baseGo.nameRandom()
-        # self.log_info("新的名字:%s" % enpName)
-        # # 执行修改程序
-        # self.log_info(baseGo.update(modelId, enpName))
-        # # 验证是否修改
-        # modelTitleEnp = findNewRes['data']['list'][-1]['modelTitle']
-        # self.log_info("%s的modelTitle: %s" % (enpName, modelTitleEnp))
-        # modelId = findNewRes['data']['list'][-1]['modelId']
-        # self.log_info("%s的modelId: %s" % (newName, modelId))
-        #
-        # self.assert_("检查changeName是否被修改", enpName == modelTitleEnp)
-        # #  通过该modelId删除该菜单
-        # baseGo.delete(modelId)
-        # # 使用精准搜索接口
-        # resAcc = baseGo.AccurateSearch(modelId)
-        # code = re.findall("code:</b>(.*?)<br/>", resAcc.text)
-        # self.assert_("检查enpName是否还存在", code[0] =="500")
 
     def post_test(self):
         pass

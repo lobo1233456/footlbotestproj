@@ -1,6 +1,8 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
 import json
+
+import pysnooper
 import requests
 from testbase import datadrive
 
@@ -28,10 +30,9 @@ class sysManager001(FootlboTestCase):
         self.url =  urlInfo()
         # ------------获得session---------------
         self.log_info(self.url.keepSession())
+
+    @pysnooper.snoop()
     def run_test(self):
-        # ---------------------------
-        self.start_step("登录验证")
-        # ---------------------------
         url = self.url.urlBasefun()+"ms/sys/sys_manager/save.do"
         self.log_info("创建新用户%s"%self.url.nameRandom())
         self.newName =self.url.nameRandom()
@@ -56,7 +57,7 @@ class sysManager001(FootlboTestCase):
         }
         responseAdd = requests.request("POST", url, json=payload, headers=self.headers)
         self.log_info("新增接口返回response:%s"%responseAdd)
-        nameList = self.mysql.searchMysql()
+        nameList = mysqlCon().searchMysql()
         self.log_info(r"查找数据库是否存在该账户:"+str(self.newName in nameList))
         if (self.newName in nameList) == True:
             self.log_info("添加成功，数据库中已经含有%s,添加功能已经实现"%self.newName)
@@ -69,6 +70,7 @@ class sysManager001(FootlboTestCase):
         #获得最新的managerID
         self.log_info("新增账号的managerId：%s"%responseList['data']['list'][0]['managerId'])
 
+    @pysnooper.snoop()
     def post_test(self):
         # 删除该账号
         urldel = self.url.urlBasefun() + "ms/sys/sys_manager/delete.do"

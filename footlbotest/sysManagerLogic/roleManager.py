@@ -1,5 +1,7 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
+import pysnooper
+
 from footlbolib.IndependentDecoration.roleApi import roleInfo
 from footlbolib.testcase import FootlboTestCase
 class roleManager001(FootlboTestCase):
@@ -16,6 +18,8 @@ class roleManager001(FootlboTestCase):
         self.baseGo = roleInfo()
         # ------------获得随机名字---------------
         self.newName = self.baseGo.nameRandom()
+
+    @pysnooper.snoop()
     def run_test(self):
         baseGo = self.baseGo
         responseCreat = baseGo.creatID(self.newName)#创建随机账号

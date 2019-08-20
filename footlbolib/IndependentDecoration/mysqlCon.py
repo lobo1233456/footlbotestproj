@@ -95,10 +95,11 @@ class mysqlCon():
       return results
 
 if __name__ == '__main__':
-   siteId= 2
+   dictId= 452
    # print(mysqlCon().comMysql("SELECT model_id FROM sys_model order by model_id DESC LIMIT 1"))
    # resMql = mysqlCon().comMysql("SELECT * FROM custom_page WHERE page_id = %s" % pageId)
-   # resMql = mysqlCon().comMysql("SELECT * FROM custom_dict WHERE dict_id = %s" % dictId)
+   resMql = mysqlCon().comMysql("SELECT * FROM custom_dict WHERE dict_id = %s" % dictId)
+   print(resMql)
    #
    # existNameList = mysqlCon().delete('test1565578423')
    # print(mysqlCon().searchMysql())
@@ -108,7 +109,5 @@ if __name__ == '__main__':
    # if len(existNameList & nameList) == 0 :nodifference = True
    #
    # sql ="DELETE   FROM sys_manager WHERE manager_name = 'test1565342096'"
-   resMql = mysqlCon().comMysql("SELECT * FROM site_app WHERE app_id = %s" % siteId)
-   self.log_info(resMql)
-   self.assert_("指定id是否已经被清理", (resMql == None))
+
 

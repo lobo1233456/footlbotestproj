@@ -10,7 +10,7 @@ class roleManager001(FootlboTestCase):
     '''
     owner = "liubo"
     timeout = 5
-    priority = FootlboTestCase.EnumPriority.High
+    priority = FootlboTestCase.EnumPriority.BVT
     status = FootlboTestCase.EnumStatus.Design
     tags = "BYT"
     def pre_test(self):

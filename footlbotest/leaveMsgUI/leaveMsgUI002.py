@@ -18,13 +18,13 @@ class leaveMsgUI002(FootlboTestCase):
     timeout = 5
     priority = FootlboTestCase.EnumPriority.High
     status = FootlboTestCase.EnumStatus.Design
-    tags = "Demo", "Help"
+    tags = "UItest", "Help"
 
     def pre_test(self):
         self.driver = webdriver.Firefox()
         self.accept_next_alert = True
 
-    @retry(stop_max_attempt_number=3, stop_max_delay=10000)
+
     def close_alert_and_get_its_text(self):
         try:
             alert = self.driver.switch_to_alert()
@@ -47,7 +47,7 @@ class leaveMsgUI002(FootlboTestCase):
         time.sleep(5)
         driver.find_element_by_id("Name1").clear()
         driver.find_element_by_id("Name1").send_keys("test")
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element_by_id("Tel1").click()
         driver.find_element_by_id("Tel1").clear()
         driver.find_element_by_id("Tel1").send_keys("13764743157")
@@ -75,11 +75,11 @@ class leaveMsgUI002(FootlboTestCase):
         driver.find_element_by_id("yixiang").click()
         driver.find_element_by_id("imgBtnUp1").click()
 
-        try:
-            picture_url = driver.get_screenshot_as_file('PicleaveMsgUI002.png')
-            self.log_info("%s：截图" % picture_url)
-        except BaseException as msgPic:
-            print(msgPic)
+        # try:
+        #     picture_url = driver.get_screenshot_as_file('PicleaveMsgUI002.png')
+        #     self.log_info("%s：截图" % picture_url)
+        # except BaseException as msgPic:
+        #     print(msgPic)
         self.driver.implicitly_wait(30)
         msg = self.close_alert_and_get_its_text()
         self.test_result.info("这个是一个截图", attachments={"留言成功截图": "PicleaveMsgUI002.png"})

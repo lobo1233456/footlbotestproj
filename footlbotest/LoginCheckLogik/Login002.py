@@ -22,7 +22,7 @@ class Login002(FootlboTestCase):
     timeout = 5
     priority = FootlboTestCase.EnumPriority.High
     status = FootlboTestCase.EnumStatus.Design
-    tags = "Demo", "Help"
+    tags = "BVT", "Help"
 
     def pre_test(self):
         self.url =  urlInfo()

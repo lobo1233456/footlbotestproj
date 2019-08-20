@@ -42,7 +42,7 @@ class dictManager(FootlboTestCase):
 
         baseGo.delete(dictId)
         resMql = mysqlCon().comMysql("SELECT * FROM custom_dict WHERE dict_id = %s" % dictId)
-        self.assert_("指定id是否已经被清理", (resMql == None))
+        self.assert_("指定id是否已经被清理", (len(resMql) == 0))
 
     def post_test(self):
         pass

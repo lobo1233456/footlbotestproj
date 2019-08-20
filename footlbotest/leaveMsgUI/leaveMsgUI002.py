@@ -23,6 +23,8 @@ class leaveMsgUI002(FootlboTestCase):
     def pre_test(self):
         self.driver = webdriver.Firefox()
         self.accept_next_alert = True
+
+    @retry(stop_max_attempt_number=3, stop_max_delay=10000)
     def close_alert_and_get_its_text(self):
         try:
             alert = self.driver.switch_to_alert()

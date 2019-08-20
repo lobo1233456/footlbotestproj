@@ -85,13 +85,14 @@ class mysqlCon():
          # for i in range(len(results)):
          #    nameEnp = results[i][0]
          #    existName.append(nameEnp)
+         db.commit()
 
       except:
          print("Error: unable to fetch data")
          db.rollback()
       # 关闭连接
       db.close()
-      return results
+      # return results
 
 if __name__ == '__main__':
    print(mysqlCon().comMysql("SELECT model_id FROM sys_model order by model_id DESC LIMIT 1"))
@@ -104,3 +105,4 @@ if __name__ == '__main__':
    # if len(existNameList & nameList) == 0 :nodifference = True
    #
    # sql ="DELETE   FROM sys_manager WHERE manager_name = 'test1565342096'"
+

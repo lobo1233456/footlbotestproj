@@ -1,6 +1,8 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
 import json
+
+import pysnooper
 import requests
 from footlbolib.IndependentDecoration.urlBase import urlInfo
 from footlbolib.testcase import FootlboTestCase
@@ -16,14 +18,16 @@ class Login004(FootlboTestCase):
     tags = "BVT"
 
     def pre_test(self):
-        self.url =  urlInfo(accountName='liubo', password='123456')
+        self.url =  urlInfo(accountName='admin', password='123456')
+
+    @pysnooper.snoop()
     def run_test(self):
         # ---------------------------
         self.start_step("测试登录接口")
         # ---------------------------
         url = self.url.urlBasefun()+"ms/check_login.do"
         payload = {
-          "accountName": "liubo",
+          "accountName": "admin",
           "checkCode": "",
           "password": "123456"
         }

@@ -42,8 +42,7 @@ class pageManager(FootlboTestCase):
 
         baseGo.delete(pageId)
         resMql = mysqlCon().comMysql("SELECT * FROM custom_page WHERE page_id = %s" % pageId)
-        self.log_info("已存在的page_id：%s"%resMql)
-        self.assert_("指定id是否已经被清理", (resMql == None))
+        self.assert_( "指定id是否已经被清理",(len(resMql) == 0))
 
     def post_test(self):
         pass

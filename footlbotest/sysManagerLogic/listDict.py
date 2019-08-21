@@ -1,12 +1,10 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
-import re
 
 import pysnooper
 
 from footlbolib.IndependentDecoration.dictListApi import DictInfo
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
-
 from footlbolib.testcase import FootlboTestCase
 
 class dictManager(FootlboTestCase):

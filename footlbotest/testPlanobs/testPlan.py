@@ -14,7 +14,7 @@
 #         return {"apk": self.test_target_args",
 #                 "version": tool_get_apk_ver(self.test_target_args)}
 #
-#     def test_setup(self, report):
+    # def test_setup(self, report):
 #         """全局初始化
 #         """
 #         install_tools("adb")

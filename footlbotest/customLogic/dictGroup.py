@@ -5,6 +5,7 @@ import re
 import pysnooper
 
 from footlbolib.CustomManage.CustoPageAPI import pageInfo
+from footlbolib.CustomManage.dictGroupAPI import dictGroup
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
 
 from footlbolib.testcase import FootlboTestCase
@@ -25,7 +26,7 @@ class pageManager(FootlboTestCase):
     @pysnooper.snoop()
     def run_test(self):
 
-        baseGo = pageInfo()
+        baseGo = dictGroup()
         pageNew = baseGo.nameRandom()
         pageNameUpdate = baseGo.nameRandom()
         baseGo.creatID(pageNew)

@@ -9,7 +9,7 @@ import settings
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
 
 urlBase= settings.URlBASE
-class reviewInfo():
+class reviewRelationInfo():
     def __init__(self,accountName='admin',password='123456'):
         self.accountName  =accountName
         self.password =password
@@ -36,12 +36,10 @@ class reviewInfo():
         :param newName:
         :return:
         '''
-        url = reviewInfo().urlBasefun() +"ms/cms/review_reviews/save.do"
+        url = reviewRelationInfo().urlBasefun() +"ms/review_relations/addUniqueRelation.do"
         payload = {
-            "redirect":"","id":"","content":newName,"reviewType":"0"
-            }
-
-
+            "redirect":"","name":newName,"gender":"1","daysAgo":"12","content":"12312","zan":"123","contentId":0,"categoryId":25
+        }
         headers = {
             'Content-Type': "application/json",
             'Cookie': "%s"%self._keepSession()
@@ -50,16 +48,16 @@ class reviewInfo():
         response = json.loads(response.text)
         return(response,newName)
     def FindID(self):
-        url = reviewInfo().urlBasefun() +"ms/cms/review_reviews/list.do"
+        url = reviewRelationInfo().urlBasefun() +"ms/review_relations/list.do"
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%reviewInfo()._keepSession(),
+            'Cookie': "%s"%reviewRelationInfo()._keepSession(),
         }
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return(response)
     def update(self,appId,newName):
-        url = reviewInfo().urlBasefun() +"ms/cms/review_reviews/update.do"
+        url = reviewRelationInfo().urlBasefun() +"ms/review_relations/update.do"
         payload = {
                 "appCopyright": "dsfs ",
                 "appDescription": "3",
@@ -95,34 +93,33 @@ class reviewInfo():
             }
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%reviewInfo()._keepSession(),
+            'Cookie': "%s"%reviewRelationInfo()._keepSession(),
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         # response = json.loads(response.text)
         return(response)
     def delete(self,id):
-        url = reviewInfo().urlBasefun() +"ms/cms/review_reviews/delete.do"
+        url = reviewRelationInfo().urlBasefun() +"ms/review_relations/delete.do"
         payload = "[\r\n  %s\r\n]"%id
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%reviewInfo()._keepSession(),
+            'Cookie': "%s"%reviewRelationInfo()._keepSession(),
         }
         response = requests.request("POST", url, data=payload, headers=headers)
-
         return(response.text)
 
     def AccurateSearch(self, id):
-        url = reviewInfo().urlBasefun() + "ms/cms/review_reviews/info/%s.do" % id
+        url = reviewRelationInfo().urlBasefun() + "ms/review_relations/info/%s.do" % id
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s" % reviewInfo()._keepSession(),
+            'Cookie': "%s" % reviewRelationInfo()._keepSession(),
         }
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return  response
 
     def upfilisBatch(self,path):
-        url = reviewInfo().urlBasefun() +"file/upload.do"
+        url = reviewRelationInfo().urlBasefun() +"file/upload.do"
         f1 = open(path,'rb')
         files = {
                 'file':('pingLun.xlsx',f1,"multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"),
@@ -135,7 +132,7 @@ class reviewInfo():
         }
         headers = {
             # 'content-type': "multipart/form-data", 不能加这个
-            'Cookie': "%s" % reviewInfo()._keepSession(),
+            'Cookie': "%s" % reviewRelationInfo()._keepSession(),
         }
         response = requests.request("POST", url,data=data,files=files,headers=headers)
         return (response.text)
@@ -144,11 +141,11 @@ class reviewInfo():
         :param path: the path of object
         :return:
         '''
-        url = reviewInfo().urlBasefun() +"ms/cms/review_reviews/import.do"
+        url = reviewRelationInfo().urlBasefun() +"ms/review_relations/import.do"
         querystring = {"path": path}
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s" % reviewInfo()._keepSession(),
+            'Cookie': "%s" % reviewRelationInfo()._keepSession(),
         }
         response = requests.request("GET", url, headers=headers, params=querystring)
         response = json.loads(response.text)
@@ -156,8 +153,7 @@ class reviewInfo():
 
 
 if __name__ == '__main__':
-    baseGo = reviewInfo()
-
+    baseGo = reviewRelationInfo()
     enpPath = baseGo.upfilisBatch(settings.PROJECT_ROOT_DIR+r"\resources\FIles\pingLun.xlsx")
     res = baseGo.importDo(enpPath)
     sql = 'DELETE FROM review_reviews WHERE content LIKE "test%"'
@@ -189,11 +185,11 @@ if __name__ == '__main__':
     # print(res)
 # # import requests
 #     name = '60'
-#     url = "http://csf.91clt.com:8090/fycms/ms/cms/review_reviews/delete.do"
+#     url = "http://csf.91clt.com:8090/fycms/ms/review_relations/delete.do"
 #     payload = "[\r\n  %s\r\n]"%name
 #     headers = {
 #         'Content-Type': "application/json",
-#         'Cookie': "%s"%reviewInfo()._keepSession(),
+#         'Cookie': "%s"%reviewRelationInfo()._keepSession(),
 #
 #         }
 #

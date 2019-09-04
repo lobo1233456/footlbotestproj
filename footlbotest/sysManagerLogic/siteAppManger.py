@@ -22,6 +22,7 @@ class SiteManager(FootlboTestCase):
 
     @pysnooper.snoop()
     def run_test(self):
+
         baseGo = SiteInfo()
         siteNew = baseGo.nameRandom()
         siteNameUpdate = baseGo.nameRandom()

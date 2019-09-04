@@ -1,10 +1,7 @@
 # -*- coding: GBK -*-
-import os
 import re
 import time
-import json
 import requests
-
 import settings
 
 urlBase= settings.URlBASE

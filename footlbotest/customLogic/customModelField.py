@@ -1,12 +1,10 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
-import re
+
 
 import pysnooper
-
 from footlbolib.CustomManage.CustoModelFieldAPI import modelFieldInfo
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
-
 from footlbolib.testcase import FootlboTestCase
 
 class ModelFieldManager(FootlboTestCase):
@@ -29,9 +27,7 @@ class ModelFieldManager(FootlboTestCase):
         ModelFieldNew = baseGo.nameRandom()
         ModelFieldNameUpdate = baseGo.nameRandom()
         baseGo.creatID(ModelFieldNew)
-
         resMql = mysqlCon().comMysql("SELECT field_id FROM custom_content_model_field ORDER BY field_id desc LIMIT 1")
-
         ModelFieldId = resMql[0][0]
         findNewRes = baseGo.FindID(ModelFieldId)
         self.assert_("创建ModelField是否成功", findNewRes["data"]["fieldName"] == ModelFieldNew)

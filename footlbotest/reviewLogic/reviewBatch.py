@@ -1,18 +1,15 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
-import re
 
 import pysnooper
-
-
+import settings
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
 from footlbolib.Review.review_reviews_api import reviewInfo
-
 from footlbolib.testcase import FootlboTestCase
 
 class reviewCase(FootlboTestCase):
     '''
-    新建model--查询model已存在，且信息一致,得到该model的reviewInfoID--修改信息--确认信息已被修改--删除model--确认已经删除
+    批量创建评论---批量删除评论
     '''
     owner = "liubo"
     timeout = 5
@@ -25,6 +22,17 @@ class reviewCase(FootlboTestCase):
 
     @pysnooper.snoop()
     def run_test(self):
+
+        baseGo = reviewInfo()
+        #上传文件至网页端目录
+        enpPath = baseGo.upfilisBatch(settings.PROJECT_ROOT_DIR + r"\resources\FIles\pingLun.xlsx")
+        #上传评论到网页
+        res = baseGo.importDo(enpPath)
+        self.comparsion("批量创建评论",res["msg"] =="执行成功")
+        #清理data数据，以test开头的评论
+        sql = 'DELETE FROM review_reviews WHERE content LIKE "test%"'
+        mysqlCon().comMysql(sql)
+        pass
 
     def post_test(self):
         pass

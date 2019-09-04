@@ -1,11 +1,28 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
-import json
-import time
 
-from retrying import retry
+import time
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
+
 from footlbolib.testcase import FootlboTestCase
+
+
+def w_test(func):
+    def inner(*args, **kwargs):
+        for i in range(3):
+            try:
+                func(*args, **kwargs)
+                break
+            except NoSuchElementException as e:
+                pass
+            finally:
+                i = i + 1
+                # driver.quit()
+        # return ret
+    return inner
+
+
 class leaveMsgUI001(FootlboTestCase):
     '''
         非合作商页面右侧留言窗口
@@ -32,7 +49,7 @@ class leaveMsgUI001(FootlboTestCase):
         finally:
             self.accept_next_alert = True
 
-    @retry(stop_max_attempt_number=3, stop_max_delay=10000)
+    # @w_test()
     def run_test(self):
         driver = self.driver
         driver.get("https://www.kmway.com/")

@@ -56,7 +56,7 @@ class sysManager001(FootlboTestCase):
             'Cookie': 'accountName = liubo;%s' % self.url.keepSession()
         }
         responseAdd = requests.request("POST", url, json=payload, headers=self.headers)
-        self.log_info("新增接口返回response:%s"%responseAdd)
+        self.log_info("新增接口返回response:%s"%responseAdd.text)
         nameList = mysqlCon().searchMysql()
         self.log_info(r"查找数据库是否存在该账户:"+str(self.newName in nameList))
         if (self.newName in nameList) == True:

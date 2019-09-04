@@ -48,8 +48,6 @@ class leaveMsgUI002(FootlboTestCase):
 
         try:
             self.driver = webdriver.Firefox()
-            # i = random.randint(7,9)
-            # print("----------%s-----------"%i)
             driver = self.driver
             driver.get("https://www.51xinsheng.com/ctbj/")
             driver.find_element_by_xpath(

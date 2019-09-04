@@ -25,7 +25,7 @@ class leaveMsgUI004(FootlboTestCase):
     timeout = 5
     priority = FootlboTestCase.EnumPriority.High
     status = FootlboTestCase.EnumStatus.Design
-    tags = "Demo", "Help"
+    tags = "BVT"
 
     def pre_test(self):
         self.driver = webdriver.Firefox()

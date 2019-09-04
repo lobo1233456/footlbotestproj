@@ -34,7 +34,7 @@ class leaveMsgUI001(FootlboTestCase):
     timeout = 5
     priority = FootlboTestCase.EnumPriority.High
     status = FootlboTestCase.EnumStatus.Design
-    tags = "Demo", "Help"
+    tags = "BVT"
 
 
     def retry_if_io_error(exception):

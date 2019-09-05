@@ -10,10 +10,6 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
 
-def retry_if_io_error(exception):
-    """Return True if we should retry (in this case when it's an IOError), False otherwise"""
-    return isinstance(exception, IOError)
-
 
 class leaveMsgUI002(FootlboTestCase):
     '''
@@ -27,9 +23,9 @@ class leaveMsgUI002(FootlboTestCase):
 
     def pre_test(self):
         self.driver = webdriver.Firefox()
+
         self.accept_next_alert = True
 
-    @retry(stop_max_attempt_number=3, retry_on_exception=retry_if_io_error)
     def run_test(self):
         try:
             driver = self.driver

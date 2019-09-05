@@ -1,5 +1,6 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
+
 import pysnooper
 
 from footlbolib.IndependentDecoration.roleApi import roleInfo
@@ -18,6 +19,7 @@ class roleManager001(FootlboTestCase):
         self.baseGo = roleInfo()
         # ------------获得随机名字---------------
         self.newName = self.baseGo.nameRandom()
+
 
     @pysnooper.snoop()
     def run_test(self):
@@ -39,6 +41,7 @@ class roleManager001(FootlboTestCase):
         baseGo.update(roleId, roleName=changeName)  # 修改roleName
         self.log_info("roleID:%s的名字已经由%s修改为%s" % (roleId, self.newName, changeName))
         data = baseGo.FindID(self.newName)
+        self.log_info(data)
         self.assert_("检查newName是否还存在",len(data['data']['list'])==0)
         self.roleIdChange = baseGo.FindID(changeName)["data"]["list"][0]["roleId"]
         self.log_info("通过修改后的名字索引roleID:%s" % self.roleIdChange)
@@ -50,6 +53,7 @@ class roleManager001(FootlboTestCase):
         self.assert_("检查%s是否已经被清理"%self.roleIdChange, resDel['msg'] == "执行成功")
         self.log_info("roleID:%s已经被清理" % self.roleIdChange)
         enp= self.baseGo.FindID(self.changeName)
+        self.log_info(len(enp['data']['list']))
         self.assert_("检查changeName是否还存在", len(enp['data']['list']) == 0)
 
 

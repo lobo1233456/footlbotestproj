@@ -28,7 +28,7 @@ def w_test(func):
 
 class leaveMsgUI002(FootlboTestCase):
     '''
-        非合作商页面右侧留言窗口
+        留言窗口
     '''
     owner = "liubo"
     timeout = 5
@@ -45,7 +45,6 @@ class leaveMsgUI002(FootlboTestCase):
         self.accept_next_alert = True
     @retry(stop_max_attempt_number=3,retry_on_exception=retry_if_io_error)
     def run_test(self):
-
         try:
             self.driver = webdriver.Firefox()
             driver = self.driver

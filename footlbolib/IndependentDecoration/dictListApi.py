@@ -8,7 +8,7 @@ from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
 
 urlBase= settings.URlBASE
 class DictInfo():
-    def __init__(self,accountName='admin',password='123456'):
+    def __init__(self,accountName='liubo',password='123456'):
         self.accountName  =accountName
         self.password =password
 

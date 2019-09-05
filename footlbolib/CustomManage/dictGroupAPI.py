@@ -7,7 +7,7 @@ import settings
 
 urlBase= settings.URlBASE
 class dictGroup():
-    def __init__(self,accountName='admin',password='123456'):
+    def __init__(self,accountName='liubo',password='123456'):
         self.accountName  =accountName
         self.password =password
 
@@ -35,21 +35,20 @@ class dictGroup():
         '''
         url = dictGroup().urlBasefun() +"ms/custom/dict_group/save.do"
         payload = {
-            {
-        "createBy": 0,
-        "createDate": "2019-08-22T06:31:10.055Z",
-        "createDateStr": "string",
-        "del": 0,
-        "groupAlias": "string",
-        "groupCode": "string",
-        "groupId": 0,
-        "groupName": "string",
-        "groupPid": 0,
-        "groupSort": 0,
-        "updateBy": 0,
-        "updateDate": "2019-08-22T06:31:10.055Z",
-        "updateDateStr": "string"
-}
+
+            "createBy": 0,
+            "createDate": "2019-09-04T08:33:01.820Z",
+            "createDateStr": "string",
+            "del": 0,
+            "groupAlias": "string",
+            "groupCode": "%s"%newName,
+            "groupId": 0,
+            "groupName": "test",
+            "groupPid": 0,
+            "groupSort": 0,
+            "updateBy": 0,
+            "updateDate": "2019-09-04T08:33:01.820Z",
+            "updateDateStr": "string"
         }
 
         headers = {

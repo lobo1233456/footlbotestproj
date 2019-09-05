@@ -1,9 +1,7 @@
 #!user/bin/env python3
 # -*- coding: UTF-8 -*-
-import re
 
 import pysnooper
-
 from footlbolib.CustomManage.CustoPageAPI import pageInfo
 from footlbolib.CustomManage.dictGroupAPI import dictGroup
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
@@ -31,19 +29,20 @@ class pageManager(FootlboTestCase):
         pageNameUpdate = baseGo.nameRandom()
         baseGo.creatID(pageNew)
         res  = baseGo.FindID()
-        pageId = res["data"]["list"][0]["pageId"]
+        self.log_info(res)
+        pageId = res["data"]["list"][-1]["groupId"]
         findNewRes = baseGo.AccurateSearch(pageId)
-        self.assert_("创建page是否成功", findNewRes["data"]["pageTitle"] == pageNew)
+        self.assert_("创建page是否成功", findNewRes["data"]["groupCode"] == pageNew)
         self.log_info("成功创建page名称:%s,modelID:%s" % (pageNew, pageId))
 
         baseGo.update(pageId,pageNameUpdate)
         findNewRes = baseGo.AccurateSearch(pageId)
-        self.assert_("修改程序是否成功", findNewRes["data"]["pageTitle"] == pageNameUpdate)  # 验证是否修改
+        self.assert_("修改程序是否成功", findNewRes["data"]["groupCode"] == pageNameUpdate)  # 验证是否修改
         self.log_info("成功执行修改程序,修改指定id的Name")
 
         baseGo.delete(pageId)
-        mysqlCon().comMysql("DELETE FROM custom_page WHERE page_id = %s" % pageId)
-        resMql = mysqlCon().comMysql("SELECT * FROM custom_page WHERE page_id = %s" % pageId)
+        mysqlCon().comMysql("DELETE FROM custom_dict_group WHERE group_id = %s" % pageId)
+        resMql = mysqlCon().comMysql("SELECT * FROM custom_dict_group WHERE group_id = %s" % pageId)
         print(resMql)
         self.assert_( "指定id是否已经被清理",(len(resMql) == 0))
 

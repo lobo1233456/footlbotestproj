@@ -5,11 +5,12 @@ import pymysql
 # 打开数据库连接
 class mysqlCon():
    def __init__(self):
-      self.serverIp = '60.205.200.186'
-      self.username = 'testuser'
-      self.password = '@Fortest'
+      self.serverIp = '192.168.2.45'
+      self.username = 'root'
+      self.port = 3306
+      self.password = 'testuser'
       self.dataChart =  "fy_cms"
-      self.db = pymysql.connect("%s" % self.serverIp, "%s" % self.username, "%s" % self.password, "fy_cms")
+      self.db = pymysql.connect(host=self.serverIp, port=self.port,user=self.username, passwd = self.password,database='fy_cms')
       # 使用cursor()方法获取操作游标
       self.cursor = self.db.cursor()
 
@@ -24,11 +25,9 @@ class mysqlCon():
          cursor.execute(sql)
          # 获取所有记录列表
          results = cursor.fetchall()
-
          for i in range(len(results)):
             nameEnp = results[i][0]
             existName.append(nameEnp)
-
       except:
          print("Error: unable to fetch data")
          db.rollback()

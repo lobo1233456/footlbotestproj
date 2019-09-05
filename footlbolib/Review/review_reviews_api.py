@@ -1,16 +1,16 @@
 # -*- coding: GBK -*-
 
-import time
 import json
-import requests
+import time
 
+import requests
 
 import settings
 from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
 
 urlBase= settings.URlBASE
 class reviewInfo():
-    def __init__(self,accountName='admin',password='123456'):
+    def __init__(self,accountName='liubo',password='123456'):
         self.accountName  =accountName
         self.password =password
 
@@ -40,7 +40,6 @@ class reviewInfo():
         payload = {
             "redirect":"","id":"","content":newName,"reviewType":"0"
             }
-
 
         headers = {
             'Content-Type': "application/json",

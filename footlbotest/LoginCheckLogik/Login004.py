@@ -20,7 +20,6 @@ class Login004(FootlboTestCase):
     def pre_test(self):
         self.url =  urlInfo(accountName='admin', password='123456')
 
-
     def run_test(self):
         # ---------------------------
         self.start_step("测试登录接口")

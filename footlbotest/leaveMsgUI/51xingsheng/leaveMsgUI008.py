@@ -66,7 +66,7 @@ class leaveMsgUI008(FootlboTestCase):
 
 
     def post_test(self):
-        # self.driver.quit()
+        self.driver.quit()
         self.log_info("testOver")
 
 

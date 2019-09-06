@@ -5,8 +5,8 @@ import requests
 import settings
 
 urlBase= settings.URlBASE
-class modelFieldInfo():
-    def __init__(self,accountName='admin',password='123456'):
+class modeladverInfo():
+    def __init__(self,accountName='liubo',password='123456'):
         self.accountName  =accountName
         self.password =password
 
@@ -23,6 +23,7 @@ class modelFieldInfo():
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         return response.headers['Set-Cookie']
+
     def nameRandom(self):
         time.sleep(0.1)
         return "test" + str(round(time.time(),1))
@@ -32,20 +33,18 @@ class modelFieldInfo():
         :param newName:
         :return:
         '''
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/save.do"
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_advertisement/save.do"
         payload = {
             "redirect": "",
-            "fieldCmId": "1",
-            "fieldId": "",
-            "fieldShowName": "tset312",
-            "fieldName": "%s"%newName,
-            "fieldPluginType": "2",
-            "fieldType": "1",
-            "fieldNullable": "0",
-            "fieldSort": "",
-            "fieldThirdSource": "213",
-            "fieldDefaultValue": "123",
-            "fieldDescription": "33"
+            "id": "",
+            "adName": "皮黔",
+            "adText": "test",
+            "keywords": "%s"%newName,
+            "prop4": "6941",
+            "prop4Name": "混搭76平米复式装修设计效果图",
+            "adLink": "testEr",
+            "positionId": 61,
+            "positionCode": "hot_city"
         }
 
 
@@ -57,53 +56,84 @@ class modelFieldInfo():
         response = requests.request("POST", url, json=payload, headers=headers)
         response = json.loads(response.text)
         return(response,newName)
-    def FindID(self,id):
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/info/%s.do"%id
-
-
+    def FindID(self):
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_advertisement/list.do"
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%modelFieldInfo()._keepSession(),
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return(response)
     def update(self,modelId,newName):
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/update.do"
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_advertisement/update.do"
         payload = {
-            "redirect": "", "modelId": modelId, "modelCode": "1", "modelName": "%s"%newName, "modelDescription": "3"
+            "redirect": "",
+            "id": "%s"%modelId,
+            "adName": "皮黔",
+            "isOpen": 1,
+            "adText": "test",
+            "keywords": "%s"%newName,
+            "prop4": "6941",
+            "prop4Name": "混搭76平米复式装修设计效果图",
+            "adLink": "testEr",
+            "positionId": 61,
+            "positionCode": "hot_city"
         }
+
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%modelFieldInfo()._keepSession(),
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         # response = json.loads(response.text)
         return(response)
     def delete(self,id):
         '''
-            http://csf.91clt.com:8090/fycms/ms/custom/content_model_field/delete.do
+            urlBasefun+ms/cms/ad_advertisement/delete.do
         :param id:
         :return:
         '''
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/delete.do"
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_advertisement/delete.do"
         payload = "[\r\n  %s\r\n]"%id
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%modelFieldInfo()._keepSession(),
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, data=payload, headers=headers)
         return(response.text)
 
     def AccurateSearch(self, id):
-        url = modelFieldInfo().urlBasefun() + "ms/custom/content_model_field/info/%s.do" % id
+        url = modeladverInfo().urlBasefun() + "ms/cms/ad_advertisement/info/%s.do" % id
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s" % modelFieldInfo()._keepSession(),
+            'Cookie': "%s" % modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return  response
+    def publish(self,id):
+        '''
+            urlBasefun+ms/cms/ad_advertisement/publish.do
+        :param id:
+        :return:
+        '''
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_advertisement/publish.do"
+        payload = "[\r\n  %s\r\n]"%id
+        headers = {
+            'Content-Type': "application/json",
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
+        }
+        response = requests.request("POST", url, data=payload, headers=headers)
+        return(response.text)
+
+
+
+if __name__ == '__main__':
+    baseGo = modeladverInfo()
+    modelId=4
+    print(baseGo.delete(modelId))
+
 
 
 

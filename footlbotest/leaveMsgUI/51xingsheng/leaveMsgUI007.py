@@ -31,6 +31,7 @@ class leaveMsgUI007(FootlboTestCase):
 
         self.driver = webdriver.Firefox()
         driver = self.driver
+        driver.maximize_window()
         driver.get("https://www.51xinsheng.com/ctbj/")
         driver.find_element_by_link_text(u"装修公司").click()
         driver.find_element_by_xpath(
@@ -45,8 +46,8 @@ class leaveMsgUI007(FootlboTestCase):
         driver.find_element_by_xpath(
             u"(.//*[normalize-space(text()) and normalize-space(.)='免费预约装企上门服务'])[1]/following::input[1]").send_keys(
             "13764743157")
-        driver.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='免费预约装企上门服务'])[1]/following::button[1]").click()
+        time.sleep(2)
+        driver.find_element_by_id(u"commitOrder").click()
         time.sleep(2)
         msg = self.close_alert_and_get_its_text(driver)
         self.log_info(msg)
@@ -54,7 +55,7 @@ class leaveMsgUI007(FootlboTestCase):
 
 
     def post_test(self):
-        # self.driver.quit()
+        self.driver.quit()
         self.log_info("testOver")
 
 

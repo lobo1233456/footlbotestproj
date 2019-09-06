@@ -31,3 +31,6 @@ import os
 #         self.assert_equal("文件存在", os.path.isfile(bigfile_path), True)
 # if __name__ == '__main__':
 #     HelloTest().debug_run()
+a = (1,2,3)
+b= [1,2,3]
+print(a[0])

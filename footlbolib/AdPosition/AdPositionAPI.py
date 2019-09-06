@@ -5,8 +5,8 @@ import requests
 import settings
 
 urlBase= settings.URlBASE
-class modelFieldInfo():
-    def __init__(self,accountName='admin',password='123456'):
+class modeladInfo():
+    def __init__(self,accountName='liubo',password='123456'):
         self.accountName  =accountName
         self.password =password
 
@@ -20,6 +20,7 @@ class modelFieldInfo():
             "password": "%s"%self.password
         }
         headers = {
+
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         return response.headers['Set-Cookie']
@@ -32,24 +33,15 @@ class modelFieldInfo():
         :param newName:
         :return:
         '''
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/save.do"
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_position/save.do"
         payload = {
             "redirect": "",
-            "fieldCmId": "1",
-            "fieldId": "",
-            "fieldShowName": "tset312",
-            "fieldName": "%s"%newName,
-            "fieldPluginType": "2",
-            "fieldType": "1",
-            "fieldNullable": "0",
-            "fieldSort": "",
-            "fieldThirdSource": "213",
-            "fieldDefaultValue": "123",
-            "fieldDescription": "33"
+            "id": "",
+            "positionName": "test",
+            "code": "%s"%newName,
+            "positionType": "0",
+            "description": "²â²â²â£¬Û½ÝBåH‘YºÚ¸å"
         }
-
-
-
         headers = {
             'Content-Type': "application/json",
             'Cookie': "%s"%self._keepSession()
@@ -57,53 +49,78 @@ class modelFieldInfo():
         response = requests.request("POST", url, json=payload, headers=headers)
         response = json.loads(response.text)
         return(response,newName)
-    def FindID(self,id):
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/info/%s.do"%id
-
-
+    def FindID(self):
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_position/list.do"
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%modelFieldInfo()._keepSession(),
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return(response)
     def update(self,modelId,newName):
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/update.do"
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_position/update.do"
         payload = {
-            "redirect": "", "modelId": modelId, "modelCode": "1", "modelName": "%s"%newName, "modelDescription": "3"
+            "redirect": "",
+            "id": "%s"%modelId,
+            "positionName": "test",
+            "code": "%s"%newName,
+            "positionType": "0",
+            "description": "²â²â²â£¬Û½ÝBåH‘YºÚ¸å"
         }
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%modelFieldInfo()._keepSession(),
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         # response = json.loads(response.text)
         return(response)
     def delete(self,id):
         '''
-            http://csf.91clt.com:8090/fycms/ms/custom/content_model_field/delete.do
+            urlBasefun+ms/cms/ad_position/delete.do
         :param id:
         :return:
         '''
-        url = modelFieldInfo().urlBasefun() +"ms/custom/content_model_field/delete.do"
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_position/delete.do"
         payload = "[\r\n  %s\r\n]"%id
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s"%modelFieldInfo()._keepSession(),
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, data=payload, headers=headers)
         return(response.text)
 
     def AccurateSearch(self, id):
-        url = modelFieldInfo().urlBasefun() + "ms/custom/content_model_field/info/%s.do" % id
+        url = modeladverInfo().urlBasefun() + "ms/cms/ad_position/info/%s.do" % id
         headers = {
             'Content-Type': "application/json",
-            'Cookie': "%s" % modelFieldInfo()._keepSession(),
+            'Cookie': "%s" % modeladverInfo()._keepSession(),
         }
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return  response
+    def publish(self,id):
+        '''
+            urlBasefun+ms/cms/ad_position/publish.do
+        :param id:
+        :return:
+        '''
+        url = modeladverInfo().urlBasefun() +"ms/cms/ad_position/publish.do"
+        payload = "[\r\n  %s\r\n]"%id
+        headers = {
+            'Content-Type': "application/json",
+            'Cookie': "%s"%modeladverInfo()._keepSession(),
+        }
+        response = requests.request("POST", url, data=payload, headers=headers)
+        return(response.text)
+
+
+
+if __name__ == '__main__':
+    baseGo = modeladverInfo()
+    modelId=4
+    print(baseGo.delete(modelId))
+
 
 
 

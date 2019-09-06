@@ -38,7 +38,6 @@ class Login002(FootlboTestCase):
           "checkCode": "",
           "password": "%s"%self.casedata
         }
-        self.log_info(payload)
         headers = {
         }
         response = requests.request("POST", url, json=payload, headers=headers)

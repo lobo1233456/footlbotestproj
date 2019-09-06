@@ -74,19 +74,14 @@ class mysqlCon():
       cursor = self.cursor
       db = self.db
       existName = []
-      # SQL 查询语句
-      # sql = "SELECT  manager_name  FROM sys_manager"
       try:
          # 执行SQL语句
          cursor.execute(sql)
-         # 获取所有记录列表
          results = cursor.fetchall()
-         # for i in range(len(results)):
-         #    nameEnp = results[i][0]
-         #    existName.append(nameEnp)
          db.commit()
+         print(results)
 
-      except:
+      except Exception as e:
          print("Error: unable to fetch data")
          db.rollback()
       # 关闭连接
@@ -94,12 +89,14 @@ class mysqlCon():
       return results
 
 if __name__ == '__main__':
-   dictId= 452
+   modelId= 64
    # print(mysqlCon().comMysql("SELECT model_id FROM sys_model order by model_id DESC LIMIT 1"))
    # resMql = mysqlCon().comMysql("SELECT * FROM custom_page WHERE page_id = %s" % pageId)
-   resMql = mysqlCon().comMysql("SELECT * FROM custom_dict WHERE dict_id = %s" % dictId)
+
+
+   resMql = mysqlCon().comMysql("SELECT * FROM ad_position WHERE id = %s" % modelId)
    print(resMql)
-   #
+   #SELECT * FROM ad_position where id = 65
    # existNameList = mysqlCon().delete('test1565578423')
    # print(mysqlCon().searchMysql())
 

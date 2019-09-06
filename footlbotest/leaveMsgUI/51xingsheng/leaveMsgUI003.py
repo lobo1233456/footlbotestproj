@@ -31,13 +31,13 @@ class leaveMsgUI003(FootlboTestCase):
 
     def run_test(self):
 
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
         driver = self.driver
-        # i = random.randint(7,9)
-        # print("----------%s-----------"%i)
-        driver.get("https://www.51xinsheng.com/ctbj/")
+        driver.maximize_window()
 
+        driver.get("https://www.51xinsheng.com/ctbj/")
         driver.find_element_by_link_text(u"装修公司").click()
+
         time.sleep(2)
         driver.find_element_by_xpath(
             u"/html/body/div[5]/div[1]/div[2]/div[1]/span").click()
@@ -48,20 +48,15 @@ class leaveMsgUI003(FootlboTestCase):
         driver.find_element_by_xpath(
             u"(.//*[normalize-space(text()) and normalize-space(.)='免费预约装企上门服务'])[1]/following::input[1]").send_keys(
             "13764743157")
-        driver.find_element_by_xpath(
-            u"(.//*[normalize-space(text()) and normalize-space(.)='免费预约装企上门服务'])[1]/following::button[1]").click()
+        time.sleep(2)
+        driver.find_element_by_id(u"commitOrder").click()
         time.sleep(2)
         msg = self.close_alert_and_get_its_text(driver)
         self.log_info(msg)
         self.assert_("检查成功提交的结果", u"预约成功，请注意接听装修管家来电" == msg)
 
-
-
-
-
-
     def post_test(self):
-        # self.driver.quit()
+        self.driver.quit()
         self.log_info("testOver")
 
 

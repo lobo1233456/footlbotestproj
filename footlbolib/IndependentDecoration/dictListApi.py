@@ -4,7 +4,7 @@ import time
 import json
 import requests
 import settings
-from footlbolib.IndependentDecoration.mysqlCon import mysqlCon
+
 
 urlBase= settings.URlBASE
 class DictInfo():
@@ -25,9 +25,9 @@ class DictInfo():
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         return response.headers['Set-Cookie']
-
     def nameRandom(self):
-        return "test"+str(int(time.time()))
+        time.sleep(0.1)
+        return "test" + str(round(time.time(),1))
     def creatID(self,newName):
         '''
            Id会随机生成
@@ -103,34 +103,4 @@ class DictInfo():
         response = requests.request("POST", url, headers=headers)
         response = json.loads(response.text)
         return  response
-
-
-if __name__ == '__main__':
-    baseGo = DictInfo()
-    DictId=33
-    # print(baseGo.delete("63"))
-    mysqlCon().comMysql("DELETE FROM Dict_app WHERE app_id = 18")
-
-    # baseGo.update(26,"test123")
-    # enp = baseGo.delete(26)
-    # res  = re.findall("cn.fy.common.exception.ResultException: (.+)",enp)
-    # print(res)
-# # import requests
-#     name = '60'
-#     url = "http://csf.91clt.com:8090/fycms/ms/custom/dict/delete.do"
-#     payload = "[\r\n  %s\r\n]"%name
-#     headers = {
-#         'Content-Type': "application/json",
-#         'Cookie': "%s"%DictInfo()._keepSession(),
-#
-#         }
-#
-#     response = requests.request("POST", url, data=payload, headers=headers)
-#
-#     print(response.text)
-
-
-
-
-
 

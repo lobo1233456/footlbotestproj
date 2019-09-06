@@ -24,10 +24,9 @@ class urlInfo(object):
         response = requests.request("POST", url, json=payload, headers=headers)
 
         return response.headers['Set-Cookie']
-
     def nameRandom(self):
-        return "test"+str(int(time.time()))
-
+        time.sleep(0.1)
+        return "test" + str(round(time.time(),1))
 
 
 

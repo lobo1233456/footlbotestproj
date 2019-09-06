@@ -25,10 +25,9 @@ class roleInfo():
         response = requests.request("POST", url, json=payload, headers=headers)
 
         return response.headers['Set-Cookie']
-
     def nameRandom(self):
-        time.sleep(1)
-        return "test"+str(int(time.time()))
+        time.sleep(0.1)
+        return "test" + str(round(time.time(),1))
     def creatID(self,newName):
         url = roleInfo().urlBasefun() +"ms/sys/sys_role/save.do"
 

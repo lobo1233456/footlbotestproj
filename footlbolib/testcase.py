@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
-'''ʾ����������
 '''
-#2019/07/31 QTAF�Զ�����
+
+'''
+#2019/07/31 QTAF
 from selenium.common.exceptions import NoAlertPresentException
 from testbase import testcase
 
 class FootlboTestCase(testcase.TestCase):
     '''
-        小case们的云爸爸
+        FootlboTest项目中所有小case们的云爸爸
     '''
+
 
     def comparsion(self, message, value):
         """测试断言，如果value的值不为真，则用例失败，输出对应信息

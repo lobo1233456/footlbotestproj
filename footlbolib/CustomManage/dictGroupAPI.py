@@ -24,9 +24,9 @@ class dictGroup():
         }
         response = requests.request("POST", url, json=payload, headers=headers)
         return response.headers['Set-Cookie']
-
     def nameRandom(self):
-        return "test"+str(int(time.time()))
+        time.sleep(0.1)
+        return "test" + str(round(time.time(),1))
     def creatID(self,newName):
         '''
             appId会随机生成
@@ -105,26 +105,6 @@ class dictGroup():
         return  response
 
 
-if __name__ == '__main__':
-    baseGo = dictGroup()
-    pageId=4
-    print(baseGo.delete(pageId))
-    # mysqlCon().comMysql("DELETE FROM page_app WHERE app_id = 18")
-    # baseGo.update(26,"test123")
-    # enp = baseGo.delete(26)
-    # res  = re.findall("cn.fy.common.exception.ResultException: (.+)",enp)
-    # print(res)
-# # import requests
-#     name = '60'
-#     url = "http://csf.91clt.com:8090/fycms/ms/custom/dict_group/delete.do"
-#     payload = "[\r\n  %s\r\n]"%name
-#     headers = {
-#         'Content-Type': "application/json",
-#         'Cookie': "%s"%dictGroup()._keepSession(),
-#         }
-#
-#     response = requests.request("POST", url, data=payload, headers=headers)
-#     print(response.text)
 
 
 

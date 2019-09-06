@@ -43,7 +43,6 @@ class dirFunc():
         :param projectName: 项目名称
         :return: 项目root目录，末尾带“\”
         '''
-
         return  settings.PROJECT_ROOT_DIR
 
 if __name__ == '__main__':

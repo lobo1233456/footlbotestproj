@@ -46,8 +46,11 @@ class modelSubmsg(FootlboTestCase):
         time.sleep(2)
 
         #验证其数据库知否存在该数据
-        resMql = mysqlCon().comMysql("SELECT * FROM message where id = %s" % modelId)
-        self.assert_( "指定id是否已经被清理",(len(resMql) == 0))
+        resMql = mysqlCon().comMysql("SELECT del_flag FROM message where id = %s" % modelId)
+        self.assert_( "指定id是否已经被清理,flag已更改为1",(resMql[0][0] == 1))
+        #清理数据库测试数据
+        mysqlCon().comMysql("delete FROM message where id = %s" % modelId)
+
 
 
     def post_test(self):
